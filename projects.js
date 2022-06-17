@@ -6,11 +6,11 @@ const  mysql = require('mysql');
 const sha1 = require('sha1');
 
 const connOptions = {
-    connectionLimit: process.env.connectionLimit,
-    host: process.env.DBHOST,
-    user: process.env.DBUSER,
-    password: process.env.DBPASSWORD,
-    database: process.env.DBNAME
+    connectionLimit: 10,
+    host: 'maguystichy.com',
+    user: 'bbi_api_user',
+    password: 'Letmein@2022',
+    database: 'badihbarakat_fms'
 }
 
 const connectionPool = mysql.createPool(connOptions);
