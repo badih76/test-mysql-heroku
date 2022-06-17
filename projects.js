@@ -59,5 +59,37 @@ router.get('/healthCheck',async (req, res) => {
     });
 });
 
+router.get('/', async (req: express.Request, res: express.Response) => { 
+    // get all projects
+
+    connectionPool.query('SELECT prjID, prjName FROM projects', 
+        function (error: mysql.MysqlError, results, fields: mysql.FieldInfo[]) {
+            try {
+                if (error) throw error;
+
+                let docs: IProject[] = [];
+                results.map(d => {
+                    docs.push({
+                        prjID: d.prjID,
+                        prjName: d.prjName
+                        
+                    });    
+                });
+
+                let result: Result = {
+                    resultStatus: 200,
+                    resultDesc: "Successful",
+                    resultReturn: docs,
+                    errorDesc: null
+                }
+
+                res.send(result);
+            }
+            catch(err) {
+                res.send(err);
+            }
+            
+    });
+});
 
 module.exports = router;
