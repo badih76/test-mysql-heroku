@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
     // get all projects
 
     connectionPool.query('SELECT prjID, prjName FROM projects', 
-        function (error, results, fields: mysql.FieldInfo[]) {
+        function (error, results) {
             try {
                 if (error) throw error;
 
