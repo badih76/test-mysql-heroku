@@ -59,15 +59,15 @@ router.get('/healthCheck',async (req, res) => {
     });
 });
 
-router.get('/', async (req: express.Request, res: express.Response) => { 
+router.get('/', async (req, res) => { 
     // get all projects
 
     connectionPool.query('SELECT prjID, prjName FROM projects', 
-        function (error: mysql.MysqlError, results, fields: mysql.FieldInfo[]) {
+        function (error, results, fields: mysql.FieldInfo[]) {
             try {
                 if (error) throw error;
 
-                let docs: IProject[] = [];
+                let docs = [];
                 results.map(d => {
                     docs.push({
                         prjID: d.prjID,
@@ -76,7 +76,7 @@ router.get('/', async (req: express.Request, res: express.Response) => {
                     });    
                 });
 
-                let result: Result = {
+                let result = {
                     resultStatus: 200,
                     resultDesc: "Successful",
                     resultReturn: docs,
