@@ -28,8 +28,11 @@ router.use(bodyParser.json());
 
 
 router.get('/healthCheck',async (req, res) => {
+    console.log(connOptions);
+    console.log('############# Attempting to connect and query #############');
     connectionPool.query('SELECT * FROM dependencies WHERE dbParamName = \'HostName\'', 
         function (error, results) {
+            console.log('############# Inside query callback #############');
             try {
                 if (error) console.log("ERROR: ", error)
                 else {
